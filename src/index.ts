@@ -8,10 +8,10 @@ import validatePackageName from "validate-npm-package-name";
 import { execSync } from "child_process";
 
 const SCRIPT_OPTIONS: OptionDefinition[] = [
-  { name: "name", alias: "n", type: String, defaultValue: "new-module" },
+  { name: "name", alias: "n", type: String, defaultValue: "new-package" },
   { name: "description", alias: "d", type: String },
   { name: "version", alias: "v", type: String, defaultValue: "1.0.0" },
-  { name: "license", alias: "t", type: String, defaultValue: "UNLICENSED" },
+  { name: "license", alias: "t", type: String, defaultValue: "MIT" },
   { name: "private", alias: "p", type: Boolean, defaultValue: false },
   { name: "silent", alias: "s", type: Boolean, defaultValue: false },
   { name: "git", alias: "g", type: Boolean, defaultValue: true },

@@ -26,10 +26,10 @@ var import_command_line_usage = __toESM(require("../node_modules/command-line-us
 var import_validate_npm_package_name = __toESM(require("../node_modules/validate-npm-package-name/lib/index.js"));
 var import_child_process = require("child_process");
 var SCRIPT_OPTIONS = [
-  { name: "name", alias: "n", type: String, defaultValue: "new-module" },
+  { name: "name", alias: "n", type: String, defaultValue: "new-package" },
   { name: "description", alias: "d", type: String },
   { name: "version", alias: "v", type: String, defaultValue: "1.0.0" },
-  { name: "license", alias: "t", type: String, defaultValue: "UNLICENSED" },
+  { name: "license", alias: "t", type: String, defaultValue: "MIT" },
   { name: "private", alias: "p", type: Boolean, defaultValue: false },
   { name: "silent", alias: "s", type: Boolean, defaultValue: false },
   { name: "git", alias: "g", type: Boolean, defaultValue: true },
