@@ -11,6 +11,7 @@
     "url": "https://github.com/rewdy/create-new-module"
   },
   "homepage": "https://github.com/rewdy/create-new-module#readme",
+  "keywords": ["starter", "empty"],
   "scripts": {
     "build": "node ./esbuild.config.js",
     "start": "node ./esbuild.config.js --watch",
