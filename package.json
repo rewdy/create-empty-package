@@ -1,6 +1,6 @@
 {
   "name": "create-empty-package",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple script to create a new, empty node package. Similar to `poetry new <name>`.",
   "author": "Andrew Meyer",
   "license": "MIT",
