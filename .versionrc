@@ -1,0 +1,13 @@
+{
+  "types": [
+    {"type": "feat", "section": "Features"},
+    {"type": "fix", "section": "Bug Fixes"},
+    {"type": "refactor", "section": "Updates"},
+    {"type": "revert", "section": "Updates"},
+    {"type": "build", "section": "Updates"},
+    {"type": "chore", "hidden": true},
+    {"type": "ci", "hidden": true},
+    {"type": "docs", "hidden": true},
+    {"type": "test", "hidden": true}
+  ]
+}

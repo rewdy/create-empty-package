@@ -1,0 +1,5 @@
+{
+  "path": "./node_modules/@digitalroute/cz-conventional-changelog-for-jira",
+  "skipScope": false,
+  "jiraOptional": true
+}
