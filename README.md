@@ -2,6 +2,8 @@
 
 This is a very basic script that can be used to generate a new node package programmatically. It's similar to `npm init` or `yarn init`, except for this takes args so that you don't have to use the wizard. It's very similar to `poetry new` in the python world.
 
+👉 [Changelog](https://github.com/rewdy/create-empty-package/blob/master/CHANGELOG.md)
+
 ## 🤔 But y tho?
 
 Right now (as far as I can tell), there's not a single non-interactive command to setup a new, empty package. You can [specify default values](https://yarnpkg.com/cli/init/#details) in a `.yarnrc.yml` file and run `yarn init` or maybe some other stuff, but nothing this simple and dumb. Thus, I make my own.
