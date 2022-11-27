@@ -10,7 +10,12 @@ let buildConfig = {
   bundle: true,
   platform: "node",
   target: ["node10.4"],
-  external: ["./node_modules/*"],
+  external: [
+    // Not sure why esbuild can't figure these out on its own, but oh well.
+    "command-line-args",
+    "command-line-usage",
+    "validate-npm-package-name",
+  ],
   outfile: "bin/index.js",
 };
 
@@ -41,6 +46,6 @@ let buildConfig = {
   // build
   esbuild
     .build(buildConfig)
-    .then(() => console.log(successMessage))
+    .then((buildResult) => console.log(successMessage, buildResult))
     .catch(() => process.exit(1));
 })();

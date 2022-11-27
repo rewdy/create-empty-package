@@ -21,9 +21,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 
 // src/index.ts
 var import_fs = __toESM(require("fs"));
-var import_command_line_args = __toESM(require("../node_modules/command-line-args/dist/index.js"));
-var import_command_line_usage = __toESM(require("../node_modules/command-line-usage/index.js"));
-var import_validate_npm_package_name = __toESM(require("../node_modules/validate-npm-package-name/lib/index.js"));
+var import_command_line_args = __toESM(require("command-line-args"));
+var import_command_line_usage = __toESM(require("command-line-usage"));
+var import_validate_npm_package_name = __toESM(require("validate-npm-package-name"));
 var import_child_process = require("child_process");
 var SCRIPT_OPTIONS = [
   { name: "name", alias: "n", type: String, defaultValue: "new-package" },
@@ -69,22 +69,19 @@ var HELP_SECTIONS = [
   }
 ];
 (() => {
-  let options = (0, import_command_line_args.default)(SCRIPT_OPTIONS, { partial: true });
-  const { help, git, silent, _unknown, ...packageJsonValues } = options;
-  let forceHelp = false;
+  const options = (0, import_command_line_args.default)(SCRIPT_OPTIONS, { partial: true });
+  const { _unknown, ...untouched } = options;
   if (_unknown && _unknown.length === 1) {
-    options = {
-      ...options,
-      name: _unknown[0]
-    };
+    untouched["name"] = _unknown[0];
   } else if (_unknown && _unknown.length > 1) {
     console.warn(
       "\u{1F914} Ambiguous usage. Not sure what you want. See the help docs...\n"
     );
-    forceHelp = true;
+    untouched["help"] = true;
   }
+  const { help, git, silent, ...packageJsonValues } = untouched;
   const logger = (message) => !silent && console.log("\u2699\uFE0F  " + message);
-  if (help || forceHelp) {
+  if (help) {
     const help2 = (0, import_command_line_usage.default)(HELP_SECTIONS);
     console.log(help2);
     process.exit(0);

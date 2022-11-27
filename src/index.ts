@@ -2,8 +2,9 @@
 
 import fs from "fs";
 import commandLineArgs from "command-line-args";
-import commandLineUsage, { Section } from "command-line-usage";
 import type { OptionDefinition } from "command-line-args";
+import commandLineUsage from "command-line-usage";
+import type { Section } from "command-line-usage";
 import validatePackageName from "validate-npm-package-name";
 import { execSync } from "child_process";
 
@@ -55,28 +56,30 @@ const HELP_SECTIONS: Section[] = [
 ];
 
 (() => {
-  let options = commandLineArgs(SCRIPT_OPTIONS, { partial: true });
+  const options = commandLineArgs(SCRIPT_OPTIONS, { partial: true });
 
-  // Slice and dice 🔪
-  const { help, git, silent, _unknown, ...packageJsonValues } = options;
-  let forceHelp = false;
+  // pull out the _unknown values so we can handle them
+  const { _unknown, ...untouched } = options;
 
   if (_unknown && _unknown.length === 1) {
-    options = {
-      ...options,
-      name: _unknown[0], // if we get one unknown arg, set it to the name.
-    };
+    // if we get a single, unknown value, we will treat it as the name
+    untouched["name"] = _unknown[0];
   } else if (_unknown && _unknown.length > 1) {
+    // if we get multiple, we fail b/c we don't know what to do with what
     console.warn(
       "🤔 Ambiguous usage. Not sure what you want. See the help docs...\n"
     );
-    forceHelp = true;
+    untouched["help"] = true;
   }
 
+  // Slice and dice 🔪
+  const { help, git, silent, ...packageJsonValues } = untouched;
+
+  // little helper function for conditional logging
   const logger = (message: string) => !silent && console.log("⚙️  " + message);
 
   // Show help docs when requested
-  if (help || forceHelp) {
+  if (help) {
     const help = commandLineUsage(HELP_SECTIONS);
     console.log(help);
     process.exit(0); // don't continue if asking for help
